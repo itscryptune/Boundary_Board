@@ -1,17 +1,23 @@
-#
-# Changes to this file will be overwritten by `trmnlp pull`.
-#
-# Docs: https://help.trmnl.com/en/articles/10542599-importing-and-exporting-private-plugins#h_581fb988f0
-#
 ---
+name: BoundaryBoard
+description: Cricket match scores for an e-ink display
 strategy: polling
+polling_url: "https://api.cricapi.com/v1/currentMatches?apikey={{ cricket_api_key }}&offset=0"
+polling_verb: GET
+polling_headers: ''
+refresh_interval: 30
+framework_version: latest
 no_screen_padding: 'no'
 dark_mode: 'no'
-static_data: ''
-polling_verb: get
-framework_version: latest
-polling_url: ''
-polling_headers: ''
-name: My Plugin
-description: ''
-refresh_interval: 1440
+custom_fields:
+  - keyname: cricket_api_key
+    field_type: password
+    name: CricketData API Key
+    description: Enter your personal CricketData API key
+    required: true
+  - keyname: about
+    name: About BoundaryBoard
+    field_type: author_bio
+    category: sports,productivity
+    description: Cricket match scores for TRMNL, powered by CricketData.org.
+    github_url: https://github.com/itscryptune

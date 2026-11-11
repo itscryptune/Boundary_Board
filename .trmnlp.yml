@@ -3,12 +3,10 @@
 ---
 # auto-reload when files change (`watch: false` to disable)
 watch:
-  - .trmnlp.yml
   - src
+  - .trmnlp.yml
 
-# values of custom fields (defined in src/settings.yml)
-custom_fields: {}
-
-# override variables
-variables:
-  trmnl: {}
+time_zone: Asia/Kolkata
+transform_runtime: enabled
+custom_fields:
+  cricket_api_key: "{{ env.CRICKET_API_KEY }}"
