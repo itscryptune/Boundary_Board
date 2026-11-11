@@ -2,19 +2,19 @@
   <div class="bb">
     <div class="bb-header">BOUNDARYBOARD · CRICKET</div>
     <div class="bb-main">
-      <div class="bb-heading">Example match — not live data</div>
+      <div class="bb-heading">{{ featured.name | escape }}</div>
       <div class="bb-versus">
         <div class="bb-team">
-          <div class="bb-code">NAMW</div>
-          <div class="bb-name">Namibia Women</div>
+          <div class="bb-code">{{ featured.team1.short | escape }}</div>
+          <div class="bb-name">{{ featured.team1.name | escape }}</div>
           <div class="bb-score">15/1</div>
           <div class="bb-overs">5.1 OV</div>
-        </div>
+        </div> 
         <div class="bb-vs">VS</div>
         <div class="bb-team">
-          <div class="bb-code">UGAW</div>
-          <div class="bb-name">Uganda Women</div>
-          <div class="bb-score">Yet to bat</div>
+          <div class="bb-code">{{ featured.team2.short | escape }}</div>
+          <div class="bb-name">{{ featured.team2.name | escape }}</div>
+          <div class="bb-score">Yet to bat</div> 
           <div class="bb-overs"></div>
         </div>
       </div>
