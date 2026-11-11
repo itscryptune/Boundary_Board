@@ -29,6 +29,17 @@ function getScore(match, team) {
     overs: current.o === null || current.o === undefined ? "" : `${current.o} OV`
   };
 }
+function getState(match) {
+  if (match.matchEnded === true) return "RESULT";
+  if (match.matchStarted !== true) return "UPCOMING";
+  const status = text(match.status).toLowerCase();
+  if (/stumps|end of day|close of play/.test(status)) return "STUMPS";
+  if (/rain|delayed|interrupted|bad light/.test(status)) return "DELAYED";
+  if (/lunch|tea break|innings break/.test(status)) return "BREAK";
+  const hasScore = list(match.score).some(s => s && s.r !== null && s.r !== undefined);
+  if (!hasScore && /opt to|elected to|won the toss/.test(status)) return "TOSS";
+  return "LIVE";
+} 
 function normalize(match) {
   const teams = getTeams(match);
   return { name: text(match.name, "Cricket match"), team1: teams[0], team2: teams[1],
@@ -36,7 +47,11 @@ function normalize(match) {
            team2_score: getScore(match, teams[1]).score,
            team1_overs: getScore(match, teams[0]).overs,
            team2_overs: getScore(match, teams[1]).overs,
-           state: "UPCOMING", status: "Score integration in progress", format: "CRICKET", venue: "" };
+           state: getState(match),
+           status: text(match.status, "Latest available match status"),
+           format: text(match.matchType, "CRICKET").toUpperCase(),
+           venue: text(match.venue)
+          };
 } 
 function run(input) {
   const data = Array.isArray(input?.data) ? input.data :
