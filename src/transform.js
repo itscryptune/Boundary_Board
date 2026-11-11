@@ -12,13 +12,32 @@ function getTeams(match) {
     return { name, short };
   });
 }
+function getScore(match, team) {
+  const name = team.name.toLowerCase(), short = team.short.toLowerCase();
+  const innings = list(match.score).filter(s => {
+    const label = text(s?.inning).toLowerCase();
+    return label === name || label.startsWith(name + " ") ||
+           label === short || label.startsWith(short + " ");
+  });
+  if (!innings.length) return { score: "Yet to bat", overs: "" };
+  const current = innings[innings.length - 1];
+  if (current.r === null || current.r === undefined) {
+    return { score: "Score unavailable", overs: "" };
+  }
+  return {
+    score: `${text(current.r, "0")}/${text(current.w, "0")}`,
+    overs: current.o === null || current.o === undefined ? "" : `${current.o} OV`
+  };
+}
 function normalize(match) {
   const teams = getTeams(match);
   return { name: text(match.name, "Cricket match"), team1: teams[0], team2: teams[1],
-           team1_score: "15/1", team2_score: "Yet to bat",
-           team1_overs: "5.1 OV", team2_overs: "",
+           team1_score: getScore(match, teams[0]).score,
+           team2_score: getScore(match, teams[1]).score,
+           team1_overs: getScore(match, teams[0]).overs,
+           team2_overs: getScore(match, teams[1]).overs,
            state: "UPCOMING", status: "Score integration in progress", format: "CRICKET", venue: "" };
-}
+} 
 function run(input) {
   const data = Array.isArray(input?.data) ? input.data :
                Array.isArray(input?.data?.data) ? input.data.data : [];

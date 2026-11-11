@@ -7,15 +7,15 @@
         <div class="bb-team">
           <div class="bb-code">{{ featured.team1.short | escape }}</div>
           <div class="bb-name">{{ featured.team1.name | escape }}</div>
-          <div class="bb-score">15/1</div>
-          <div class="bb-overs">5.1 OV</div>
+          <div class="bb-score">{{ featured.team1_score | escape }}</div>
+          <div class="bb-overs">{{ featured.team1_overs | escape }}</div>
         </div> 
         <div class="bb-vs">VS</div>
         <div class="bb-team">
           <div class="bb-code">{{ featured.team2.short | escape }}</div>
           <div class="bb-name">{{ featured.team2.name | escape }}</div>
-          <div class="bb-score">Yet to bat</div> 
-          <div class="bb-overs"></div>
+          <div class="bb-score">{{ featured.team2_score | escape }}</div> 
+          <div class="bb-overs">{{ featured.team2_overs | escape }}</div>
         </div>
       </div>
       <div class="bb-status">Example match information</div>
