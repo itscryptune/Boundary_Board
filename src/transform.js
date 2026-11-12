@@ -83,7 +83,8 @@ function run(input) {
   const matches = data.filter(item => item && typeof item === "object")
                       .map(normalize)
                       .sort(sortMatches);
-  return { featured: matches[0] || null, other_matches: matches.slice(1, 4), total_count: matches.length,
-           live_count: matches.filter(m => m.state === "LIVE").length,
-           board_state: "READY", board_message: "" };
-}
+  const liveCount = matches.filter(match => match.state === "LIVE").length;
+  return {featured: matches[0] || null, other_matches: matches.slice(1, 4), total_count: matches.length,
+            live_count: liveCount, board_state: liveCount > 0 ? "READY" : "NO_LIVE",
+            board_message: liveCount > 0 ? "Latest available scores" : "No active play reported."  };
+}  
