@@ -50,13 +50,22 @@ function normalize(match) {
            state: getState(match),
            status: text(match.status, "Latest available match status"),
            format: text(match.matchType, "CRICKET").toUpperCase(),
-           venue: text(match.venue)
+           venue: text(match.venue),
+           start_time: text(match.dateTimeGMT)
           };
 } 
 const PRIORITY = { LIVE:0, BREAK:1, TOSS:2, STUMPS:3, DELAYED:4, UPCOMING:5, RESULT:6 };
 function sortMatches(a, b) {
   const difference = (PRIORITY[a.state] ?? 7) - (PRIORITY[b.state] ?? 7);
   if (difference !== 0) return difference;
+  const timeA = Date.parse(a.start_time);
+  const timeB = Date.parse(b.start_time);
+  if ( Number.isFinite(timeA) && Number.isFinite(timeB) && timeA !== timeB) {
+    if (a.state === "RESULT") {
+      return timeB - timeA;
+    }
+    return timeA - timeB;
+  }
   return a.name.localeCompare(b.name);
 }
 function run(input) {
@@ -74,7 +83,7 @@ function run(input) {
   const matches = data.filter(item => item && typeof item === "object")
                       .map(normalize)
                       .sort(sortMatches);
-  return { featured: matches[0] || null, other_matches: [], total_count: matches.length,
+  return { featured: matches[0] || null, other_matches: matches.slice(1, 4), total_count: matches.length,
            live_count: matches.filter(m => m.state === "LIVE").length,
            board_state: "READY", board_message: "" };
 }
