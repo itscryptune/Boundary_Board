@@ -1,3 +1,6 @@
+{% assign local_now = "now" | date: "%s" | plus: trmnl.user.utc_offset %}
+{% assign updated_at = local_now | date: "%I:%M %p" %}
+
 <style>
 .bb { height:100%; width:100%; display:flex; flex-direction:column;
       font-family:Arial,Helvetica,sans-serif; background:#fff; color:#111; overflow:hidden; }
@@ -45,4 +48,6 @@
 .bb-branded { display:flex; align-items:center; gap:10px; }
 .bb-logo { display:block; width:36px; height:36px; object-fit:contain;
            background:#fff; flex-shrink:0; }
+.bb-footer-row { display:flex; align-items:center; justify-content:space-between;
+                 gap:8px; font-size:9px; }
 </style>

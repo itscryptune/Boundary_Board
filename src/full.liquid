@@ -48,7 +48,10 @@
       </div>
       {% endif %}
     </div>   
-    <div class="bb-footer">A simple cricket scoreboard</div>
+    <div class="bb-footer bb-footer-row">
+      <span>{{ total_count | default: 0 }} MATCHES · {{ live_count | default: 0 }} LIVE</span>
+      <span>SCREEN UPDATED {{ updated_at }} · CricketData.org</span>
+    </div>
   </div>
 </div>
-<div class="title_bar"><span class="title">BoundaryBoard</span></div> 
+<div class="title_bar"><span class="title">BoundaryBoard</span></div>
