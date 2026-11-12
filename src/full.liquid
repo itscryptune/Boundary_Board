@@ -20,13 +20,29 @@
         </div>
       </div>
       <div class="bb-status">{{ featured.state }} · {{ featured.status | escape }}</div>
+      {% if other_matches.size > 0 %}
+        <div class="bb-other-title">OTHER MATCHES</div>
+        <div class="bb-others">
+          {% for match in other_matches %}
+            <div class="bb-other-card">
+              <div class="bb-other-label">{{ match.format | escape }} · {{ match.state }}</div>
+              <div class="bb-other-score"> 
+                {{ match.team1.short | escape }} {{ match.team1_score | escape }}
+                <span>vs</span>
+                {{ match.team2.short | escape }} {{ match.team2_score | escape }}
+              </div> 
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       {% else %}
       <div class="bb-status">
         {% if board_state == "ERROR" %}Scores unavailable{% else %}No matches right now{% endif %}
         — {{ board_message | escape }}
       </div>
       {% endif %}
-    </div>
+    </div>   
     <div class="bb-footer">A simple cricket scoreboard</div>
   </div>
 </div>
