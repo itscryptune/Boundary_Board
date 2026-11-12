@@ -1,0 +1,594 @@
+
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  color: #111;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 16px;
+}
+
+/* Website controls */
+
+.site-header,
+.site-brand,
+.layout-choices,
+.site-footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.site-header,
+.site-footer {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.site-brand img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.site-brand p {
+  margin: 4px 0 0;
+  color: #555;
+  font-size: 13px;
+}
+
+.refresh-button,
+.layout-choices button {
+  border: 2px solid #111;
+  padding: 10px 14px;
+  background: white;
+  font-weight: 700;
+}
+
+.refresh-button:hover,
+.layout-choices button:hover {
+  background: #ddd;
+}
+
+.refresh-button:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+.layout-choices {
+  margin: 25px 0 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.layout-choices button.active {
+  color: white;
+  background: #111;
+}
+
+.notice {
+  color: #444;
+  font-size: 13px;
+  min-height: 20px;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 10px 0 24px;
+}
+
+.site-footer {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #555;
+}
+
+.site-footer a {
+  color: inherit;
+}
+
+/* Main e-ink scoreboard */
+
+.bb {
+  background: #fff;
+  color: #111;
+  width: min(100%, 800px);
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #111;
+  overflow: hidden;
+  box-shadow: 0 10px 30px #00000012;
+}
+
+.bb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 16px;
+  border-bottom: 2px solid #111;
+  min-height: 62px;
+}
+
+.bb-brand,
+.bb-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bb-brand {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  min-width: 0;
+}
+
+.bb-brand img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  flex: none;
+}
+
+.bb-meta {
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.bb-badge {
+  border: 2px solid #111;
+  padding: 5px 10px;
+}
+
+.bb-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 16px;
+  overflow: hidden;
+}
+
+.bb-heading {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+}
+
+.bb-versus {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.bb-team {
+  width: 40%;
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.bb-code {
+  font-size: clamp(30px, 7vw, 67px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.bb-name {
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.bb-score {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.bb-overs {
+  font-size: 11px;
+  color: #444;
+}
+
+.bb-vs-centre {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.bb-vs-centre strong {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.bb-vs-centre small {
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.bb-vs-line {
+  height: 2px;
+  width: 45px;
+  max-width: 80%;
+  background: #111;
+}
+
+.bb-status {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.bb-venue {
+  font-size: 10px;
+  text-align: center;
+  color: #555;
+}
+
+.bb-other-section {
+  border-top: 2px solid #111;
+  padding-top: 7px;
+}
+
+.bb-other-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.bb-others {
+  display: flex;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.bb-other-card {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #888;
+  padding: 6px;
+}
+
+.bb-other-label {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.bb-other-score {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+.bb-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+}
+
+.bb-footer {
+  border-top: 2px solid #111;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.bb-title-bar {
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 6px 14px;
+}
+
+/* Half horizontal */
+
+.bb--horizontal {
+  height: 260px;
+}
+
+.bb--horizontal .bb-header {
+  min-height: 44px;
+  padding: 5px 12px;
+}
+
+.bb--horizontal .bb-brand {
+  font-size: 14px;
+}
+
+.bb--horizontal .bb-brand img {
+  width: 29px;
+  height: 29px;
+}
+
+.bb--horizontal .bb-meta {
+  font-size: 10px;
+}
+
+.bb--horizontal .bb-main {
+  padding: 5px 12px;
+  gap: 4px;
+}
+
+.bb--horizontal .bb-code {
+  font-size: clamp(24px, 5vw, 36px);
+}
+
+.bb--horizontal .bb-score {
+  font-size: 21px;
+}
+
+.bb--horizontal .bb-name,
+.bb--horizontal .bb-venue,
+.bb--horizontal .bb-other-section {
+  display: none;
+}
+
+.bb--horizontal .bb-status {
+  font-size: 12px;
+}
+
+/* Half vertical */
+
+.bb--vertical {
+  width: min(100%, 420px);
+  height: 510px;
+}
+
+.bb--vertical .bb-header {
+  padding: 6px 10px;
+  min-height: 44px;
+}
+
+.bb--vertical .bb-brand {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.bb--vertical .bb-brand img {
+  width: 28px;
+  height: 28px;
+}
+
+.bb--vertical .bb-meta {
+  font-size: 9px;
+  gap: 5px;
+}
+
+.bb--vertical .bb-badge {
+  padding: 3px;
+}
+
+.bb--vertical .bb-versus {
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.bb--vertical .bb-team {
+  width: 100%;
+  gap: 1px;
+}
+
+.bb--vertical .bb-code {
+  font-size: 43px;
+}
+
+.bb--vertical .bb-score {
+  font-size: 24px;
+}
+
+.bb--vertical .bb-name {
+  font-size: 11px;
+}
+
+.bb--vertical .bb-vs-centre {
+  width: 100%;
+  gap: 0;
+}
+
+.bb--vertical .bb-vs-centre strong {
+  font-size: 14px;
+}
+
+.bb--vertical .bb-vs-line,
+.bb--vertical .bb-vs-centre small {
+  display: none;
+}
+
+.bb--vertical .bb-status {
+  font-size: 12px;
+}
+
+.bb--vertical .bb-venue,
+.bb--vertical .bb-other-section {
+  display: none;
+}
+
+.bb--vertical .bb-footer {
+  font-size: 8px;
+}
+
+/* Quadrant */
+
+.bb--quadrant {
+  width: min(100%, 420px);
+  height: 260px;
+}
+
+.bb--quadrant .bb-header {
+  padding: 4px 8px;
+  min-height: 35px;
+}
+
+.bb--quadrant .bb-brand {
+  font-size: 11px;
+  letter-spacing: 0;
+  gap: 5px;
+}
+
+.bb--quadrant .bb-brand img {
+  width: 22px;
+  height: 22px;
+}
+
+.bb--quadrant .bb-meta {
+  font-size: 9px;
+}
+
+.bb--quadrant .bb-badge {
+  padding: 2px;
+}
+
+.bb--quadrant .bb-main {
+  padding: 4px 7px;
+  gap: 3px;
+}
+
+.bb--quadrant .bb-code {
+  font-size: 29px;
+}
+
+.bb--quadrant .bb-score {
+  font-size: 16px;
+}
+
+.bb--quadrant .bb-overs {
+  font-size: 8px;
+}
+
+.bb--quadrant .bb-name,
+.bb--quadrant .bb-venue,
+.bb--quadrant .bb-other-section {
+  display: none;
+}
+
+.bb--quadrant .bb-vs-centre {
+  gap: 3px;
+}
+
+.bb--quadrant .bb-vs-centre strong {
+  font-size: 12px;
+}
+
+.bb--quadrant .bb-vs-line,
+.bb--quadrant .bb-vs-centre small {
+  display: none;
+}
+
+.bb--quadrant .bb-status {
+  font-size: 10px;
+}
+
+.bb--quadrant .bb-footer {
+  padding: 4px 7px;
+  font-size: 7px;
+}
+
+.bb--quadrant .bb-title-bar {
+  font-size: 10px;
+  padding: 4px 7px;
+}
+
+/* Small screens */
+
+@media (max-width: 540px) {
+  .page {
+    padding: 16px 10px;
+  }
+
+  .bb-brand {
+    font-size: 12px;
+    letter-spacing: 0;
+    gap: 5px;
+  }
+
+  .bb-brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .bb-meta {
+    font-size: 9px;
+    gap: 4px;
+  }
+
+  .bb-badge {
+    padding: 3px;
+  }
+
+  .bb-main {
+    padding: 8px;
+  }
+
+  .bb-code {
+    font-size: 35px;
+  }
+
+  .bb-score {
+    font-size: 22px;
+  }
+
+  .bb-other-score {
+    font-size: 9px;
+  }
+
+  .bb-footer {
+    font-size: 7px;
+  }
+}

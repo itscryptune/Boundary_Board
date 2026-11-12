@@ -88,3 +88,6 @@ function run(input) {
             live_count: liveCount, board_state: liveCount > 0 ? "READY" : "NO_LIVE",
             board_message: liveCount > 0 ? "Latest available scores" : "No active play reported."  };
 } 
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { run };
+}

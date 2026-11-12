@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>BoundaryBoard | Live Cricket Scores</title>
+  <meta name="description" content="Live cricket scores in an e-ink-inspired scoreboard." >
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/logo/boundaryboard-logo.svg"
+  >
+
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="site-header">
+
+      <div class="site-brand">
+        <img
+          src="/logo/boundaryboard-logo.svg"
+          alt="BoundaryBoard logo"
+        >
+
+        <div>
+          <h1>BoundaryBoard</h1>
+          <p>Cricket scores, without the clutter.</p>
+        </div>
+      </div>
+
+      <button
+        id="refresh"
+        class="refresh-button"
+        type="button"
+      >
+        Refresh display
+      </button>
+
+    </header>
+
+    <nav
+      class="layout-choices"
+      aria-label="Scoreboard layout"
+    >
+      <button
+        type="button"
+        class="active"
+        data-layout="full"
+        aria-pressed="true"
+      >Full</button>
+
+      <button
+        type="button"
+        data-layout="horizontal"
+        aria-pressed="false"
+      >Half horizontal</button>
+
+      <button
+        type="button"
+        data-layout="vertical"
+        aria-pressed="false"
+      >Half vertical</button>
+
+      <button
+        type="button"
+        data-layout="quadrant"
+        aria-pressed="false"
+      >Quadrant</button>
+    </nav>
+
+    <p id="notice" class="notice" role="status">
+      Loading cricket scores…
+    </p>
+
+    <main class="preview">
+      <article
+        id="scoreboard"
+        class="bb bb--full"
+        aria-label="Cricket scoreboard"
+        aria-live="polite"
+      ></article>
+    </main>
+
+    <footer class="site-footer">
+      <span>
+        Created by
+        <a href="https://github.com/itscryptune/Boundary_Board">
+          itscryptune
+        </a>
+      </span>
+
+      <span>
+        Scores: CricketData.org · Updated periodically,
+        not ball by ball
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>
