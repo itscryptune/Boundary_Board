@@ -15,9 +15,9 @@ function getTeams(match) {
 function getScore(match, team) {
   const name = team.name.toLowerCase(), short = team.short.toLowerCase();
   const innings = list(match.score).filter(s => {
-    const label = text(s?.inning).toLowerCase();
-    return label === name || label.startsWith(name + " ") ||
-           label === short || label.startsWith(short + " ");
+    const label = text(s?.inning).toLowerCase().replace(/\s+/g, " ").trim();
+    return label === name || label.startsWith(name + " ") || label.startsWith(name + ",") ||
+           label === short || label.startsWith(short + " ") || label.startsWith(short + ",");
   });
   if (!innings.length) return { score: "Yet to bat", overs: "" };
   const current = innings[innings.length - 1];
@@ -87,4 +87,4 @@ function run(input) {
   return {featured: matches[0] || null, other_matches: matches.slice(1, 4), total_count: matches.length,
             live_count: liveCount, board_state: liveCount > 0 ? "READY" : "NO_LIVE",
             board_message: liveCount > 0 ? "Latest available scores" : "No active play reported."  };
-}  
+} 
