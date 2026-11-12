@@ -53,6 +53,12 @@ function normalize(match) {
            venue: text(match.venue)
           };
 } 
+const PRIORITY = { LIVE:0, BREAK:1, TOSS:2, STUMPS:3, DELAYED:4, UPCOMING:5, RESULT:6 };
+function sortMatches(a, b) {
+  const difference = (PRIORITY[a.state] ?? 7) - (PRIORITY[b.state] ?? 7);
+  if (difference !== 0) return difference;
+  return a.name.localeCompare(b.name);
+}
 function run(input) {
   const payload = Array.isArray(input?.data?.data) ? input.data : input;
   const data = Array.isArray(payload?.data) ? payload.data :
@@ -65,6 +71,10 @@ function run(input) {
     return { featured: null, other_matches: [], total_count: 0, live_count: 0,
              board_state: "EMPTY", board_message: "No matches found in this response" };
   }
-  return { featured: normalize(data[0]), other_matches: [], total_count: data.length,
-           live_count: 0, board_state: "READY", board_message: "" };
+  const matches = data.filter(item => item && typeof item === "object")
+                      .map(normalize)
+                      .sort(sortMatches);
+  return { featured: matches[0] || null, other_matches: [], total_count: matches.length,
+           live_count: matches.filter(m => m.state === "LIVE").length,
+           board_state: "READY", board_message: "" };
 }
