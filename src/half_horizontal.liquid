@@ -1,7 +1,29 @@
-<div class="layout layout--col layout--center">
-  <span class="title title--large">Half horizontal</span>
+<div class="layout">
+  <div class="bb bb-horizontal">
+    <div class="bb-header">BOUNDARYBOARD · HALF SCREEN</div>
+    <div class="bb-main">
+      {% if featured %}
+        <div class="bb-heading">{{ featured.format | escape }} · {{ featured.state }}</div>
+        <div class="bb-versus">
+          <div class="bb-team">
+            <div class="bb-code">{{ featured.team1.short | escape }}</div>
+            <div class="bb-score">{{ featured.team1_score | escape }}</div>
+            <div class="bb-overs">{{ featured.team1_overs | escape }}</div>
+          </div>
+          <div class="bb-vs">VS</div>
+          <div class="bb-team">
+            <div class="bb-code">{{ featured.team2.short | escape }}</div>
+            <div class="bb-score">{{ featured.team2_score | escape }}</div>
+            <div class="bb-overs">{{ featured.team2_overs | escape }}</div>
+          </div>
+        </div>
+        <div class="bb-status">{{ featured.status | truncate: 90 | escape }}</div>
+      {% else %}
+        <div class="bb-status">{{ board_message | escape }}</div>
+      {% endif %}
+    </div>
+    <div class="bb-footer">CricketData.org</div>
+  </div>
 </div>
+<div class="title_bar"><span class="title">BoundaryBoard</span></div>
 
-<div class="title_bar">
-  <span class="title">My Plugin</span>
-</div>
