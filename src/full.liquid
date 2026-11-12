@@ -2,6 +2,7 @@
   <div class="bb">
     <div class="bb-header">BOUNDARYBOARD · CRICKET</div>
     <div class="bb-main">
+      {% if featured %}
       <div class="bb-heading">{{ featured.name | escape }}</div>
       <div class="bb-versus">
         <div class="bb-team">
@@ -19,6 +20,12 @@
         </div>
       </div>
       <div class="bb-status">{{ featured.state }} · {{ featured.status | escape }}</div>
+      {% else %}
+      <div class="bb-status">
+        {% if board_state == "ERROR" %}Scores unavailable{% else %}No matches right now{% endif %}
+        — {{ board_message | escape }}
+      </div>
+      {% endif %}
     </div>
     <div class="bb-footer">A simple cricket scoreboard</div>
   </div>

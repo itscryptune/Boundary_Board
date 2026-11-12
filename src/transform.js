@@ -54,9 +54,17 @@ function normalize(match) {
           };
 } 
 function run(input) {
-  const data = Array.isArray(input?.data) ? input.data :
-               Array.isArray(input?.data?.data) ? input.data.data : [];
-  const featured = data.length ? normalize(data[0]) : normalize({});
-  return { featured, other_matches: [], total_count: data.length, live_count: 0,
-           board_state: "READY", board_message: "" };
+  const payload = Array.isArray(input?.data?.data) ? input.data : input;
+  const data = Array.isArray(payload?.data) ? payload.data :
+               Array.isArray(payload) ? payload : null;
+  if (payload?.status === "failure" || payload?.status === "error" || !data) {
+    return { featured: null, other_matches: [], total_count: 0, live_count: 0,
+             board_state: "ERROR", board_message: text(payload?.reason, "Score feed unavailable") };
+  }
+  if (!data.length) {
+    return { featured: null, other_matches: [], total_count: 0, live_count: 0,
+             board_state: "EMPTY", board_message: "No matches found in this response" };
+  }
+  return { featured: normalize(data[0]), other_matches: [], total_count: data.length,
+           live_count: 0, board_state: "READY", board_message: "" };
 }
