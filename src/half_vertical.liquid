@@ -1,6 +1,12 @@
 <div class="layout">
   <div class="bb bb-vertical">
-    <div class="bb-header">BOUNDARYBOARD</div>
+    <div class="bb-header">
+      <span class="bb-small-brand">
+         <img class="bb-small-logo"
+              src="https://raw.githubusercontent.com/itscryptune/Boundary_Board/main/logo/boundaryboard-logo.svg"
+              alt="BoundaryBoard Logo"><span>BOUNDARYBOARD</span>
+      </span>
+    </div>
     <div class="bb-main">
       {% if featured %}
         <div class="bb-heading">{{ featured.format | escape }} · {{ featured.state }}</div>
