@@ -1,10 +1,20 @@
 <div class="layout">
-  <div class="bb">
+  <div class="bb bb-full">
     <div class="bb-header bb-branded">
-      <img class="bb-logo"
-        src="https://raw.githubusercontent.com/itscryptune/Boundary_Board/main/logo/boundaryboard-logo.svg"
-        alt="Boundary Board logo">
-      <span>BOUNDARYBOARD</span>
+      <div class="bb-header-main">
+        <img class="bb-logo"
+          src="https://raw.githubusercontent.com/itscryptune/Boundary_Board/main/logo/boundaryboard-logo.svg"
+          alt="BoundaryBoard cricket logo">
+        <span class="bb-brand-name">BOUNDARYBOARD</span>
+      </div>
+      <div class="bb-header-side">
+        {% if featured %}
+          <span class="bb-format">{{ featured.format | escape }}</span>
+          <span class="bb-badge {% if featured.state == 'LIVE' %}bb-badge-live{% endif %}">{{ featured.state }}</span>
+        {% else %}
+          <span class="bb-format">CRICKET SCOREBOARD</span>
+        {% endif %}
+      </div>
     </div>
     <div class="bb-main">
       {% if featured %}
@@ -16,7 +26,12 @@
           <div class="bb-score">{{ featured.team1_score | escape }}</div>
           <div class="bb-overs">{{ featured.team1_overs | escape }}</div>
         </div> 
-        <div class="bb-vs">VS</div>
+        <div class="bb-vs-centre">
+          <div class="bb-vs-line"></div>
+          <div class="bb-vs">VS</div>
+          <div class="bb-vs-state">{{ featured.state }}</div>
+          <div class="bb-vs-line"></div>
+        </div>
         <div class="bb-team">
           <div class="bb-code">{{ featured.team2.short | escape }}</div>
           <div class="bb-name">{{ featured.team2.name | escape }}</div>
@@ -24,20 +39,22 @@
           <div class="bb-overs">{{ featured.team2_overs | escape }}</div>
         </div>
       </div>
-      <div class="bb-status">{{ featured.state }} · {{ featured.status | escape }}</div>
+      <div class="bb-status">{{ featured.status | escape }}</div>
+      <div class="bb-venue">{{ featured.venue | escape }}</div>
       {% if other_matches.size > 0 %}
+        <div class="bb-other-section">
         <div class="bb-other-title">OTHER MATCHES</div>
         <div class="bb-others">
           {% for match in other_matches %}
             <div class="bb-other-card">
               <div class="bb-other-label">{{ match.format | escape }} · {{ match.state }}</div>
               <div class="bb-other-score"> 
-                {{ match.team1.short | escape }} {{ match.team1_score | escape }}
-                <span>vs</span>
-                {{ match.team2.short | escape }} {{ match.team2_score | escape }}
+                <span>{{ match.team1.short | escape }} {{ match.team1_score | escape }}</span>
+                <span>{{ match.team2.short | escape }} {{ match.team2_score | escape }}</span>
               </div> 
             </div>
           {% endfor %}
+        </div>
         </div>
       {% endif %}
 
@@ -47,10 +64,10 @@
         — {{ board_message | escape }}
       </div>
       {% endif %}
-    </div>   
+    </div> 
     <div class="bb-footer bb-footer-row">
-      <span>{{ total_count | default: 0 }} MATCHES · {{ live_count | default: 0 }} LIVE</span>
-      <span>SCREEN UPDATED {{ updated_at }} · CricketData.org</span>
+      <span>{{ total_count | default: 0 }} MATCHES &nbsp;·&nbsp; {{ live_count | default: 0 }} LIVE</span>
+      <span class="bb-footer-source">LAST SCREEN UPDATE:{{ render_time }} &nbsp;·&nbsp; CricketData.org</span>
     </div>
   </div>
 </div>

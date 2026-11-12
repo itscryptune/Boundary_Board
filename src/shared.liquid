@@ -1,5 +1,6 @@
+
 {% assign local_now = "now" | date: "%s" | plus: trmnl.user.utc_offset %}
-{% assign updated_at = local_now | date: "%I:%M %p" %}
+{% assign render_time = local_now | date: "%I:%M %p" %}
 
 <style>
 .bb { height:100%; width:100%; display:flex; flex-direction:column;
@@ -50,4 +51,43 @@
            background:#fff; flex-shrink:0; }
 .bb-footer-row { display:flex; align-items:center; justify-content:space-between;
                  gap:8px; font-size:9px; }
+.bb, .bb * { box-sizing:border-box; }
+.bb-full .bb-header { display:flex; align-items:center; min-height:42px;
+                      padding:8px 16px; justify-content:space-between; gap:12px; }
+.bb-header-main, .bb-header-side { display:flex; align-items:center; gap:12px; }
+.bb-header-main { min-width:0; }
+.bb-header-side { flex-shrink:0; }
+.bb-full .bb-logo { width:45px; height:45px; padding:3px; border-radius:4px; }
+.bb-brand-name { font-size:18px; font-weight:900; letter-spacing:2px; }
+.bb-format { font-size:12px; font-weight:800; }
+.bb-badge { border:2px solid #111; padding:4px 9px;
+            font-size:11px; font-weight:900; }
+.bb-badge-live { background:#111; color:#fff; }
+.bb-full .bb-main { justify-content:flex-start; padding:8px 16px; gap:7px; }
+.bb-full .bb-heading { color:#555; line-height:1.25; }
+.bb-full .bb-versus { flex:1; min-height:0; }
+.bb-full .bb-team { display:flex; flex-direction:column; align-items:center;
+                    justify-content:center; gap:5px; }
+.bb-full .bb-code { font-size:67px; letter-spacing:-3px;
+                    line-height:1; white-space:nowrap; }
+.bb-full .bb-name { font-size:14px; line-height:1.2; }
+.bb-full .bb-score { font-size:30px; line-height:1.1; }
+.bb-vs-centre { width:20%; flex-shrink:0; display:flex; flex-direction:column;
+                align-items:center; justify-content:center; gap:10px; }
+.bb-full .bb-vs { font-size:34px; font-weight:400; }
+.bb-vs-line { width:45px; height:2px; background:#111; }
+.bb-vs-state { font-size:11px; font-weight:900; }
+.bb-full .bb-status { font-size:15px; line-height:1.3; }
+.bb-venue { text-align:center; font-size:10px; color:#555; }
+.bb-other-section { border-top:2px solid #111; padding-top:8px;
+                    display:flex; flex-direction:column; gap:7px; }
+.bb-full .bb-other-title { border:0; padding:0; }
+.bb-full .bb-others { gap:8px; }
+.bb-full .bb-other-card { padding:7px 8px; }
+.bb-full .bb-other-score { font-size:13px; flex-wrap:nowrap; }
+.bb-full .bb-other-score span { min-width:0; overflow-wrap:break-word; }
+.bb-footer-row { display:flex; align-items:center; justify-content:space-between;
+                 gap:10px; min-height:29px; padding:6px 14px; }
+.bb-footer-source { color:#555; }
+.bb-full .bb-name, .bb-full .bb-status, .bb-venue {overflow-wrap:break-word;}
 </style>
