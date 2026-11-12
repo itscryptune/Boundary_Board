@@ -8,11 +8,17 @@
           <div class="bb-team">
             <div class="bb-code">{{ featured.team1.short | escape }}</div>
             <div class="bb-score">{{ featured.team1_score | escape }}</div>
+            <div class="bb-overs">
+              {{ featured.team1_overs | escape }}
+            </div>
           </div>
           <div class="bb-vs">VS</div>
           <div class="bb-team">
             <div class="bb-code">{{ featured.team2.short | escape }}</div>
             <div class="bb-score">{{ featured.team2_score | escape }}</div>
+            <div class="bb-overs">
+              {{ featured.team2_overs | escape }}
+            </div>
           </div>
         </div>
         <div class="bb-status">{{ featured.status | truncate: 60 | escape }}</div>
@@ -20,7 +26,10 @@
         <div class="bb-status">{{ board_message | escape }}</div>
       {% endif %}
     </div>
-    <div class="bb-footer">CricketData.org</div>
+    <div class="bb-footer">
+      <span>MATCH CENTRE</span>
+      <span>CricketData.org</span>
+    </div>
   </div>
 </div>
 <div class="title_bar"><span class="title">BoundaryBoard</span></div>

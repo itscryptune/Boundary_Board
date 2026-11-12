@@ -19,12 +19,15 @@
             <div class="bb-overs">{{ featured.team2_overs | escape }}</div>
           </div>
         </div>
-        <div class="bb-status">{{ featured.status | truncate: 80 | escape }}</div>
+        <div class="bb-status">{{ featured.status | truncate: 95 | escape }}</div>
       {% else %}
         <div class="bb-status">{{ board_message | escape }}</div>
       {% endif %}
     </div>
-    <div class="bb-footer">CricketData.org</div>
+    <div class="bb-footer">
+      <span>CRICKET</span>
+      <span>CricketData.org</span>
+    </div>
   </div>
 </div>
 <div class="title_bar"><span class="title">BoundaryBoard</span></div>
