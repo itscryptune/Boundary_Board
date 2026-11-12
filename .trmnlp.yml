@@ -5,8 +5,12 @@
 watch:
   - src
   - .trmnlp.yml
+  - logo
 
 time_zone: Asia/Kolkata
 transform_runtime: enabled
 custom_fields:
   cricket_api_key: "{{ env.CRICKET_API_KEY }}"
+
+asset_overrides:
+  https://raw.githubusercontent.com/itscryptune/Boundary_Board/main/logo/boundaryboard-logo.svg: logo/boundaryboard-logo.svg
